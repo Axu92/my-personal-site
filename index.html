@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewpot" content="width=device-width, initial-scale=1">
+  <title>Haukioja - Personal site</title>
+  <meta name="description" content="Notes, projects, and contact for Your Name.">
+
+  <style>
+  :root{
+    --bg:#0b0b10; --card:#10131a; --muted:#c9d1d9; --text:#e6edf3; --accent:#7aa2f7; --border:#1f2430;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:900px;margin:0 auto;padding:24px}
+  header{margin:24px 0}
+  nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.02)}
+  main{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:720px){ main{grid-template-columns:1fr} }
+
+  section, footer{border:1px solid var(--border);border-radius:16px;background:var(--card);padding:18px}
+  h1{margin:0 0 6px;font-size:28px}
+  h2{margin:0 0 8px;font-size:18px}
+  ul{margin:0;padding-left:18px}
+  footer{margin:18px 0;color:var(--muted);font-size:14px}
+</style>
+</head>
+
+
+<body>
+    <div class="wrap">
+  <header>
+    <h1>Aleksi Haukioja</h1>
+    <p>Product Manager @ Abloy — learning security & software.</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#writing">Writing</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>About</h2>
+      <p>I build software products for secure access. This is a minimal site I’m coding from scratch.</p>
+    </section>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <ul>
+        <li>First post idea</li>
+        <li>Second post idea</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <ul>
+        <li>Abloy Beat &amp; CUMULUS — product leadership</li>
+        <li>Homelab notes — ....</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>© <span id="year"></span> Your Name — no cookies, no tracking.</small>
+  </footer>
+  </div>
+</body>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
