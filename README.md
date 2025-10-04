@@ -3,7 +3,8 @@
 Minimalistinen henkilö­sivusto, rakennettu **HTML + CSS** -pohjalta
 
 ## Live
-(Tulee myöhemmin)
+Live: https://axu92.github.io/my-personal-site/
+
 
 ## Ominaisuudet
 - Yksi sivu (index.html)
