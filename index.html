@@ -6,6 +6,33 @@
   <title>Haukioja - Personal site</title>
   <meta name="description" content="Notes, projects, and contact for Your Name.">
 
+  <!-- 
+  
+  Styling and colours
+   Tässä alkaa sisäinen CSS-tyylilohko, jossa määritellään sivun ulkoasu.
+
+   :root
+--bg: taustaväri (tumma sinertävä musta)
+
+--card: korttien tai laatikoiden taustaväri
+
+--muted: himmeä teksti (esim. footer tai apuviestit)
+
+--text: päätekstin väri
+
+--accent: korostusväri (esim. linkit)
+
+--border: reunaviivojen väri
+
+html, body
+Nollaa oletusmarginaalit ja -paddingit koko sivulta.
+Asettaa sivun taustavärin (--bg) ja tekstivärin (--text).
+Määrittää perusfontin: 16 px kokoinen, 1.6 rivivälillä ja yleisillä järjestelmäfonteilla.
+
+a { color:var(--accent); text-decoration:none } Linkit ovat korostusvärisiä (--accent) eikä niissä ole alleviivausta oletuksena.
+a:hover { text-decoration:underline } Kun viet hiiren linkin päälle, alleviivaus ilmestyy (käyttäjä saa visuaalisen palautteen)
+  -->
+
   <style>
   :root{
     --bg:#0b0b10; --card:#10131a; --muted:#c9d1d9; --text:#e6edf3; --accent:#7aa2f7; --border:#1f2430;
@@ -15,27 +42,115 @@
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
 
+  /* 
+wrap-luokka keskittää sivun sisällön.
+    max-width:900px rajoittaa leveyden
+    margin:0 auto keskittää sen vaakasuunnassa
+    padding:24px antaa sisäistä tilaa reunoille */
+
+
   .wrap{max-width:900px;margin:0 auto;padding:24px}
-  header{margin:24px 0}
+  
+/*
+
+header käyttää flexboxia:
+display:flex järjestää sisäelementit vaakasuoraan
+gap:20px antaa väliä elementtien väliin
+align-items:center keskittää ne pystysuunnassa
+margin:24px 0 lisää pystymarginaalin ylös ja alas */
+
+  header{display:flex;gap:20px;align-items:center;margin:24px 0}
+
+/*Navigaatiopalkki myös flexboxilla:
+
+gap:12px väli linkkien väliin
+flex-wrap:wrap sallii rivittymisen kapeilla näytöillä
+margin-top:8px antaa pienen välin yläpuolelle.
+
+Tyylittää navigaatiolinkit nappimaisiksi:
+padding lisää sisätilaa
+border antaa ohuen reunaviivan
+border-radius:999px tekee täysin pyöreät reunat (pillimäinen muoto)
+background antaa hyvin kevyen läpikuultavan tausta */
+
   nav{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-  nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.02)}
+    nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.02)}
+
+/*
+main-elementti käyttää CSS Grid -asettelua:
+Kaksi yhtä leveää saraketta (1fr 1fr)
+16 px väli rivien ja sarakkeiden välissä */
+
   main{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* Media query mobiilinäytöille:
+Jos näyttö on ≤ 720 px leveä, main muuttuu yhdeksi sarakkeeksi eli tarkoitus toimia hyvin myös puhelimissa*/ 
   @media (max-width:720px){ main{grid-template-columns:1fr} }
 
+/* 
+Sekä section että footer saavat:
+hienovaraisen reunaviivan
+pehmeät, pyöristetyt kulmat
+korttimaisen taustan (--card)
+sisätilaa (padding)*/ 
+
   section, footer{border:1px solid var(--border);border-radius:16px;background:var(--card);padding:18px}
+
+/*Otsikko h1 ja h2 : ei marginaalia ylös, 6 px alas, isohko fonttikoko (28 px) ja otiskko 2 vähän pienempi 18px ja 8px väli alle. */
   h1{margin:0 0 6px;font-size:28px}
   h2{margin:0 0 8px;font-size:18px}
+
+/*Poistaa oletusmarginaalit listalta ja antaa hieman vasenta sisennystä. */
+
   ul{margin:0;padding-left:18px}
+
+  /*Footerissa:
+18 px ylä- ja alamarginaali
+himmeä teksti (--muted)
+pienempi fontti (14 px) */
   footer{margin:18px 0;color:var(--muted);font-size:14px}
+
+
+/*Contact kohdan stylet kondikseen */
+
+/* Make contact span both columns on desktop */
+.contact{ grid-column: 1 / -1; }
+
+/* Horizontal list of “chips” */
+.contact-list{
+  list-style:none;
+  margin:0; padding:0;
+  display:flex; flex-wrap:wrap; gap:10px;
+}
+
+.chip{
+  display:inline-block;
+  padding:8px 12px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  text-decoration:none;
+  background:rgba(255,255,255,0.02);
+}
+
+.chip:hover{ text-decoration:underline; }
+
+/* Slightly nerdy look for the email address */
+.email{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+
 </style>
 </head>
 
+<!-- website content -->
 
 <body>
     <div class="wrap">
   <header>
+<!-- profile image -->
+      <img class="avatar" src="assets/Hauki_profile.png" alt="Yo" style="max-width:40%; height:auto;">
+       
+<!-- Title, tagline, and navigation -->
     <h1>Aleksi Haukioja</h1>
-    <p>Product Manager @ Abloy — learning security & software.</p>
+    <p>Product Manager @ Abloy - learning security & software. On the good side of hacking.</p>
     <nav>
       <a href="#about">About</a>
       <a href="#writing">Writing</a>
@@ -47,7 +162,7 @@
   <main>
     <section id="about">
       <h2>About</h2>
-      <p>I build software products for secure access. This is a minimal site I’m coding from scratch.</p>
+      <p>I build software products for secure access, goal is to have solutions that only the right keys can open</p>
     </section>
 
     <section id="writing">
@@ -61,17 +176,48 @@
     <section id="projects">
       <h2>Projects</h2>
       <ul>
-        <li>Abloy Beat &amp; CUMULUS — product leadership</li>
-        <li>Homelab notes — ....</li>
+        <li>Abloy BEAT &amp; CUMULUS - product owner</li>
+        <li>Product manager for ASSA ABLOY Wireless locks</li>
+        <li>London, November 2024 At October’s Detektor International Awards - prize for Innovative Achievement in IoT & Security</li>
+        <li>ASSA ABLOY Digital Access Solution – Innovation Award 2024</li>
       </ul>
     </section>
+
+    <!-- ===== Contact ===== -->
+<section id="contact" class="contact">
+  <h2>Contact</h2>
+  <p>Best ways to reach me:</p>
+  <ul class="contact-list">
+    <!--
+      <a class="chip email" href="mailto:you@example.com?subject=Hello%20from%20your%20site">
+        aleksihaukioja@hotmail.com
+      </a>
+    </li> -->
+
+    <li>
+      <a class="chip" href="https://www.linkedin.com/in/aleksi-haukioja-47632a1a2/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Open my LinkedIn profile in a new tab">
+        LinkedIn
+      </a>
+    </li>
+    <li>
+      <a class="chip" href="https://github.com/Axu92"
+         target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
+    </li>
+  </ul>
+</section>
   </main>
 
   <footer>
-    <small>© <span id="year"></span> Your Name — no cookies, no tracking.</small>
+    <small>© <span id="year"></span> Aleksi Haukioja - Just clean code and encrypted coffee. No cookies, no tracking. (At least... that’s what we let you believe.) .</small>
   </footer>
   </div>
 </body>
+
+<!-- Footer year updates automatically -->
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
